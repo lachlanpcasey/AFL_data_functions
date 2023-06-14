@@ -8,7 +8,7 @@ def func_initialise():
     package_path = "C:/Users/Lachlan/AppData/Local/R/win-library/4.3"
 
     # Activate the package in the R environment
-    rpackages.importr("fitzroy", lib_loc=package_path)
+    rpackages.importr("fitzRoy", lib_loc=package_path)
 
     print('Fitzroy Package imported')
 
