@@ -13,3 +13,8 @@ func_initialise()
   This will import the correct R packages.
 
 6. You can now use the functions described below within Python, and they will return a dataframe that can then be used for analysis.
+
+**Functions:**
+func_initialise(): Doesn't take any arguments. Imports the correct R packages needed for the other functions to work.
+fetch_fixture(season, round_number, source, comp): Returns the fixture for any season and round number. Source and comp can be None.
+fetch_player_stats(season, round_number, source, comp): Returns player stats for a season and round number. Source and comp can be None.
