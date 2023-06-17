@@ -10,5 +10,6 @@ This repo is made to use the "fitzRoy" package accessible in Python from R.
 from functions import func_initialise
 func_initialise()
 ```
-This will import the correct R packages.
+  This will import the correct R packages.
+
 6. You can now use the functions described below within Python, and they will return a dataframe that can then be used for analysis.
