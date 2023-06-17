@@ -18,3 +18,5 @@ func_initialise()
 func_initialise(): Doesn't take any arguments. Imports the correct R packages needed for the other functions to work.
 fetch_fixture(season, round_number, source, comp): Returns the fixture for any season and round number. Source and comp can be None.
 fetch_player_stats(season, round_number, source, comp): Returns player stats for a season and round number. Source and comp can be None.
+
+**Note**: Season can be input as a list
