@@ -1,0 +1,11 @@
+# Ignore compiled Python bytecode
+__pycache__/
+*.pyc
+
+# Ignore logs and temporary files
+logs/
+*.log
+tmp/
+
+# Ignore service account
+data_pipeline/service_account_json_afl_pipeline.json
