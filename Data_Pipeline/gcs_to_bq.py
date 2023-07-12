@@ -121,3 +121,34 @@ def upload_player_stats_to_bigquery(year):
 
     # Print message upon completion
     print(f'Table {table_id} successfully created and data loaded in BigQuery.')
+
+
+def create_combined_player_stats_table(years):
+    # Instantiate the client
+    client = bigquery.Client.from_service_account_json(service_account_file)
+    # Define the source dataset and tables
+    source_dataset_id = 'afl_player_data'
+    source_tables = [
+        f'{source_dataset_id}.player_stats_{year}_bq' for year in years]
+
+    # Define the destination dataset and table for the combined data
+    destination_dataset_id = 'afl_data'
+    destination_table_id = 'combined_player_stats_bq'
+
+    # Construct the query to union the data from the source tables
+    query = f"""
+    CREATE OR REPLACE TABLE `{client.project}.{destination_dataset_id}.{destination_table_id}` AS
+    SELECT *
+    FROM `{source_tables[0]}` 
+    UNION ALL
+    { 'UNION ALL '.join([f"SELECT * FROM `{table}`" for table in source_tables[1:]]) }
+    """
+
+    # Start the query job
+    query_job = client.query(query)
+
+    # Wait for the query job to complete
+    query_job.result()
+
+    print(
+        f"Combined table '{destination_dataset_id}.{destination_table_id}' created with data from tables: {', '.join(source_tables)}")
