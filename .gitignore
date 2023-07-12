@@ -9,3 +9,4 @@ tmp/
 
 # Ignore service account
 data_pipeline/service_account_json_afl_pipeline.json
+data_pipeline/Functions/test.ipynb
