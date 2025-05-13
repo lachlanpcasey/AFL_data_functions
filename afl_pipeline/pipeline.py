@@ -12,6 +12,7 @@ from .storage import StorageManager
 from .bigquery import BigQueryManager
 from .data_processor import preprocess_player_stats, create_sample_data
 from . import settings
+from Data_Pipeline.Functions.get_data_functions import func_initialise, fetch_player_stats
 
 # Configure logging
 logging.basicConfig(
@@ -100,7 +101,6 @@ class AFLDataPipeline:
 
                     # Import the function to fetch player stats
                     try:
-                        from AFL_data_functions.Functions.get_data_functions import fetch_player_stats
                         df = fetch_player_stats(
                             season=year, source='afltables')
                     except ImportError:
@@ -152,6 +152,11 @@ class AFLDataPipeline:
         Returns:
             list: List of successfully processed years
         """
+        # Initialise the R environment
+        logger.info("Initialising R environment")
+
+        func_initialise()
+
         logger.info(f"Running pipeline for years: {years}")
 
         # Process each year
